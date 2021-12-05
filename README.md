@@ -47,3 +47,24 @@ Last but not least: the best solution is definitely to create several instances 
 - Add whatever notifications
 - Attach name tag e.g. {Name: eng99_joseph_ASG}
 - Review and Create
+
+# Boto3
+```
+import boto3, os
+s3_client = boto3.client('s3')
+```
+## Create bucket
+`s3_client.create_bucket(Bucket=bucket_name, CreateBucketConfiguration= {'LocationConstraint': "SOME_REGION"})`
+- where bucket_name is the name of bucket to be created and SOME_REGION is the name of the region assigned for the AWS key e.g. eu-west-1
+## Upload a file
+`s3_client.upload_file(FILENAME, "eng99-joseph", os.path.basename(FILENAME))`
+- where FILENAME is the name of the file to be uploaded
+## Download a file
+`s3_client.download_file(<bucket>, <location_on_bucket>, '<disired_location>')`
+## Delete file from bucket
+`s3.delete_object(bucket_name, FILENAME)`
+- bucket_name name of bucket
+- FILENAME - filename in the bucket including filepath
+## Delete bucket
+`s3_client.delete_bucket(bucket_name)`
+- where bucket_name is the name of bucket to be deleted
